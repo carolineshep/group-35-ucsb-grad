@@ -6,10 +6,8 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE, warning = FALSE, message = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
-```{r} 
 # Install Packages
 library(tidyverse)
 library(here)
@@ -18,5 +16,13 @@ library(here)
 ```{r}
 # Read in the data
 ucsb_grad <- read_csv(here("data", "ucsb_grad_data.csv"))
+```
+
+```{r}
+# Create a new graph showing the change in domestic graduate enrollment from 2008 - 2019 
+
+ggplot(data = ucsb_grad, aes(x = year_abbr, y = domestic_enrollment)) +
+  geom_col(aes(fill = ethnicity))
+
 ```
 
