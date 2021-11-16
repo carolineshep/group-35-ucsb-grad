@@ -5,7 +5,7 @@ date: "11/13/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE, warning = FALSE, message = FALSE}
+```{r setup, include = TRUE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # Install Packages
@@ -14,17 +14,26 @@ library(tidyverse)
 library(here)
 ```
 
+This file explores demographics at University of California Santa Barbara. It evaluates and graphs the domestic graduate enrollment (proportion of individual counts) at UCSB by race / ethnicity from 2008 - 2019 (data pulled from the UCSB Office of Budget and Planning Campus Profiles) (https://bap.ucsb.edu/institutional-research).
+
 ```{r}
 # Read in the data
 
 ucsb_grad <- read_csv(here("data", "ucsb_grad_data.csv"))
 ```
 
-```{r}
+```{r, fig.cap = "**Figure 1.** Change in domestic graduate enrollment (proportion) by ethnicity at University of California Santa Barbara from 2008-2019."}
+
 # Create a new graph showing the change in domestic graduate enrollment from 2008 - 2019 
 
-ggplot(data = ucsb_grad, aes(x = year_abbr, y = domestic_enrollment)) +
-  geom_col(aes(fill = ethnicity), position = "fill") # Converted the columns from actual counts to proportions
-  
+ggplot(data = ucsb_grad, aes(x = year_abbr, 
+                             y = domestic_enrollment)) +
+  geom_col(aes(fill = ethnicity), 
+           position = "fill") +  # Converted the columns from actual counts to proportions
+  labs(x = "Year", # adds labels
+       y = "Ethnicity Proportion of Enrollment", 
+       title = "UCSB Domestic Graduate Enrollment Ethnicities (Shepherd & Johnston)") +
+  theme_minimal() # updates the theme and removes gridlines
+
 ```
 
