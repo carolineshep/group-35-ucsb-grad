@@ -33,7 +33,7 @@ ggplot(data = ucsb_grad, aes(x = year_abbr,
   labs(x = "Year", # adds labels
        y = "Ethnicity Proportion of Enrollment", 
        title = "UCSB Domestic Graduate Enrollment Ethnicities (Shepherd & Johnston)") +
-  theme_minimal() # updates the theme and removes gridlines
+  theme_minimal() # updates the theme and removed gridlines
 
 ```
 
